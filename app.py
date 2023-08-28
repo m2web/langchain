@@ -16,16 +16,16 @@ st.title('🦜🔗 Mark\'s GPT Creator')
 prompt = st.text_input('Plug in your prompt here') 
 
 # Define a template for generating YouTube video titles
-title_template = PromptTemplate(
-    input_variables = ['topic'], 
-    template='write me a youtube video title about {topic}'
-)
+# title_template = PromptTemplate(
+#    input_variables = ['topic'], 
+#    template='write me a youtube video title about {topic}'
+#)
 
 # Initialize an OpenAI language model with a temperature of 0.9
 llm = OpenAI(temperature=0.9) 
 
 # Initialize a language model chain with the title template
-title_chain = LLMChain(llm=llm, prompt=title_template, verbose=True)
+# title_chain = LLMChain(llm=llm, prompt=title_template, verbose=True)
 
 # If the user has entered a prompt, generate a response using the language model
 if prompt: 

@@ -1,4 +1,4 @@
-# How to Build an AutoGPT App
+# How to Build an AutoGPT App 🦜🔗
 
 Here are my steps in learning how to build an AutoGPT app with this forked repository. Thanks to [https://github.com/nicknochnack/Langchain-Crash-Course](https://github.com/nicknochnack/Langchain-Crash-Course).
 
@@ -12,7 +12,6 @@ Then, I got Copilot Chat to assist me with more detailed comments the app.py fil
 
 ```bash
 git checkout -b add-comments-to-app.py
-
 ```
 
 ## Adding Dependencies

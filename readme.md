@@ -56,3 +56,5 @@ This way, my apikeys.py file will not be uploaded to GitHub since it contains my
 ```python
 apikey = 'your apikey here'
 ```
+
+TODO: Add more to this readme file that discusses the minimal app.py file.

@@ -1,38 +1,54 @@
-# Import necessary modules
 import os 
 from apikey import apikey 
+
 import streamlit as st 
 from langchain.llms import OpenAI
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain, SequentialChain 
+from langchain.memory import ConversationBufferMemory
+from langchain.utilities import WikipediaAPIWrapper 
 
 # Set the OpenAI API key
 os.environ['OPENAI_API_KEY'] = apikey
 
-# Set the title of the Streamlit app
-st.title('🦜🔗 Mark\'s GPT Creator')
+# Set the OpenAI API key
+st.title('🦜🔗 Mark\'s Pirate ChatGPT')
+prompt = st.text_input('Plug in your prompt here') 
 
-# Create a text input for the user to enter their prompt 
-prompt = """The following are exerpts from conversations with an AI
-assistant. The assistant is typically amusing and witty, producing
-creative answers to the users questions. Here are some
-examples:
+# Define prompt templates for generating video titles and scripts
+title_template = PromptTemplate(
+    input_variables = ['topic'], 
+    template='talk like a pirate about {topic}'
+)
 
-User: How are you?
-AI: Aarrrgg! Maties!! I'm great and talking like a pirate!
+script_template = PromptTemplate(
+    input_variables = ['title'], 
+    template='discuss like a pirate {title}'
+)
 
-User: What time is it?
-AI: Arrgg! IT's time to sail the 7 seas!
-
-User: 
-"""
-
-# use the above prompt with user input
-prompt = st.text_input('Enter your prompt here:', prompt)
+# Set up memory buffers for storing previous conversations
+title_memory = ConversationBufferMemory(input_key='topic', memory_key='chat_history')
+script_memory = ConversationBufferMemory(input_key='title', memory_key='chat_history')
 
 
-# Initialize an OpenAI language model with a temperature of 0.9
+# Set up the OpenAI language model and LLM chains for generating titles and scripts
 llm = OpenAI(temperature=0.9) 
+title_chain = LLMChain(llm=llm, prompt=title_template, verbose=True, output_key='title', memory=title_memory)
+script_chain = LLMChain(llm=llm, prompt=script_template, verbose=True, output_key='script', memory=script_memory)
 
-# If the user has entered a prompt, generate a response using the language model
+# Set up a Wikipedia API wrapper for retrieving research information
+wiki = WikipediaAPIWrapper()
+
+# Show the prompt and generated content on the screen if there is a prompt
 if prompt: 
-    response = llm(prompt)
-    st.write(response)
+    title = title_chain.run(prompt)
+    script = script_chain.run(title=title)
+
+    st.write(title) 
+    st.write(script) 
+
+    with st.expander('Title History'): 
+        st.info(title_memory.buffer)
+
+    with st.expander('Script History'): 
+        st.info(script_memory.buffer)

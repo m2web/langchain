@@ -19,7 +19,7 @@ git checkout -b add-comments-to-app.py
 Then, per the video on YouTube I added the code's dependencies via pip:
 
 ```python
-pip insatll streamlit langchain openai wikipedia chromadb tiktoken
+pip install streamlit langchain openai wikipedia chromadb tiktoken
 ```
 
 ## Readme.md
@@ -41,6 +41,15 @@ I then merged the add-comments-to-app.py branch into the main branch:
 ```bash
 git merge add-comments-to-app.py
 ```
+
+# add apikey.py file
+Next, I added an apikey.py file to the main branch and added the following:
+
+```python
+apikey = 'your apikey here'
+```
+
+Of course, I replaced the 'your apikey here' with my actual OpenAI API key.
 
 ## Add a .gitignore file
 

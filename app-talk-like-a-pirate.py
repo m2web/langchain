@@ -17,8 +17,20 @@ os.environ['OPENAI_API_KEY'] = apikey
 # Set the title of the app
 st.title('🦜🔗 Mark\'s Pirate ChatGPT')
 
+# Inject custom CSS to adjust font size of text_input
+st.markdown(
+    """
+    <style>
+        .stTextInput > div > div > input {
+            font-size: 20px;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Set the prompt for the user to enter
-prompt = st.text_input('Your Prompt Me Hearties:', placeholder='Enter ye words here, Savvy?') 
+prompt = st.text_input('Your Prompt Textbox Me Hearties:', placeholder='Enter ye words here, Savvy?') 
 
 # Define prompt template for generating responses like a pirate
 subject_template = PromptTemplate(

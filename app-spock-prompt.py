@@ -23,7 +23,7 @@ Question: {query}
 Answer: """
 
 # Initialize an OpenAI language model with a temperature of 0.9
-llm = OpenAI(temperature=0.9) 
+llm = OpenAI(temperature=1.4) 
 
 # Generate a response from the language model
 if user_input: 

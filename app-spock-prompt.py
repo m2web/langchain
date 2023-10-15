@@ -9,7 +9,7 @@ from langchain import PromptTemplate
 os.environ['OPENAI_API_KEY'] = apikey
 
 # Set the title of the Streamlit app
-st.title('🦜🔗 Mark\'s GPT Creator')
+st.title('🦜🔗 Commander Spock\'s Q&A 🖖🏽')
 
 # Create a text input for the user to enter their prompt
 user_input = st.text_input('Plug in your prompt here')
